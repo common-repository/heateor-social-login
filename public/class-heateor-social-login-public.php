@@ -2196,6 +2196,9 @@ class Heateor_Social_Login_Public {
 		            if ( is_object( $profile_data ) && isset( $profile_data->response ) && is_array( $profile_data->response ) && isset( $profile_data->response[0]->id ) ) {
 		                $profile_data          = $this->sanitize_profile_data( ( array )$profile_data->response[0], 'vkontakte' );
 		                $profile_data['state'] = $vk_login_state;
+
+				if (isset($body->email)) $profile_data['email'] = $body->email;
+				    
 		                $response = $this->user_auth( $profile_data, 'vkontakte', $vk_redirect_url );
 		                if ( $response == 'show form' ) {
 		                    return;
